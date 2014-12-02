@@ -47,8 +47,6 @@ public class FireScript : MonoBehaviour {
 				if (fireClearance (target))
 					Instantiate (floorFire, target, new Quaternion());
 			}
-			Debug.Log("Target: " + target);
-			Debug.Log ("Raycast Hit: " + hit.point); 
 		}	
 		if (health <= 0) 
 			Destroy(this.gameObject);
