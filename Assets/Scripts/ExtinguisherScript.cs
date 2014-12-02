@@ -10,6 +10,8 @@ public class ExtinguisherScript : MonoBehaviour {
 	public GameObject propellant;
 	public CharacterController player;
 
+	public Transform spawn;
+
 	private float currentRot = 0;
 	private float dRot = 5;
 	private float maxRot = 10;
@@ -26,7 +28,7 @@ public class ExtinguisherScript : MonoBehaviour {
 			if (currentRot > maxRot)
 				currentRot = -maxRot;
 			Quaternion rot = Quaternion.Euler (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + currentRot, transform.rotation.eulerAngles.z);
-			GameObject p = (GameObject) Instantiate (propellant, transform.position, rot);
+			GameObject p = (GameObject) Instantiate (propellant, spawn.position, rot);
 			p.rigidbody.velocity = p.transform.rotation * new Vector3(0, 0, muzzleVelocity) + player.velocity;
 			//create propellant
 		}

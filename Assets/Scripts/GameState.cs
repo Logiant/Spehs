@@ -7,7 +7,7 @@ public class GameState : MonoBehaviour {
 	public GameObject loseScreen;
 	public GameObject console;
 
-	PlayerScript player;
+	public PlayerScript player;
 
 	bool lose;
 	bool win;
@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerScript> ();;
+//		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerScript> ();;
 	}
 	
 	// Update is called once per frame
