@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class GameState : MonoBehaviour {
+
+	public GameObject winScreen;
+	public GameObject loseScreen;
+	public GameObject console;
+
 	PlayerScript player;
 
 	bool lose;
@@ -16,6 +21,9 @@ public class GameState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		winScreen.SetActive (win);
+		loseScreen.SetActive (lose);
+		console.SetActive (console);
 		CheckWin ();
 	}
 
@@ -28,25 +36,5 @@ public class GameState : MonoBehaviour {
 		} else if (fires.Length == 0) {
 			win = true;
 		}
-	}
-
-	void OnGUI() {
-		if (lose) {
-			WinGUI();
-		}else if (win) {
-			LoseGUI();
-		} else if(inConsole) {
-			Console();
-		}
-	}
-
-	void Console() {
-
-	}
-	void WinGUI() {
-
-	}
-	void LoseGUI() {
-
 	}
 }
