@@ -7,7 +7,7 @@ public class PropellantScript : MonoBehaviour {
 
 	// Use this for initialization
 	void OnTriggerEnter(Collider other) {
-		if (!other.CompareTag("Player"))
+		if (!other.isTrigger && !other.CompareTag ("Propellant") && !other.CompareTag ("Player"))
 			Destroy(this.gameObject);
 		if (other.CompareTag ("Fire")) {
 			FireScript fs = other.GetComponent<FireScript>();

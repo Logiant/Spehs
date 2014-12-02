@@ -8,6 +8,7 @@ public class ExtinguisherScript : MonoBehaviour {
 	public float decay = 1f; //units per second
 	public float muzzleVelocity = 5f;
 	public GameObject propellant;
+	public CharacterController player;
 
 	private float currentRot = 0;
 	private float dRot = 5;
@@ -26,7 +27,7 @@ public class ExtinguisherScript : MonoBehaviour {
 				currentRot = -maxRot;
 			Quaternion rot = Quaternion.Euler (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + currentRot, transform.rotation.eulerAngles.z);
 			GameObject p = (GameObject) Instantiate (propellant, transform.position, rot);
-			p.rigidbody.velocity = p.transform.rotation * new Vector3(0, 0, muzzleVelocity);
+			p.rigidbody.velocity = p.transform.rotation * new Vector3(0, 0, muzzleVelocity) + player.velocity;
 			//create propellant
 		}
 		if (Input.GetButtonDown ("Fire1")) {
