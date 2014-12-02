@@ -4,6 +4,7 @@ using System.Collections;
 public class ExtinguisherScript : MonoBehaviour {
 
 	public bool firing;
+	public float maxPropellant = 10f;
 	public float propellantLeft = 10f;
 	public float decay = 1f; //units per second
 	public float muzzleVelocity = 7f;
@@ -15,10 +16,15 @@ public class ExtinguisherScript : MonoBehaviour {
 	private float currentRot = 0;
 	private float dRot = 3;
 	private float maxRot = 10;
+
+	private Transform needle; //rotate about Y as the extinguisher empties
+	private float fullAngle = 0f;
+	private float emptyAngle = -130f;
 //	ParticleRenderer particles;
 
 	void Start() {
 //		particles = GameObject.Find ("Particles").GetComponent<ParticleRenderer> ();
+		needle = GameObject.Find ("Needle").transform;
 	}
 
 	void Update() {
@@ -37,6 +43,8 @@ public class ExtinguisherScript : MonoBehaviour {
 		}
 		firing = firing && (propellantLeft > 0);
 //		particles.enabled = firing;
+		float newAngle = Mathf.Lerp (emptyAngle, fullAngle, propellantLeft/maxPropellant);
+		needle.localRotation = Quaternion.Euler (needle.localEulerAngles.x, newAngle, needle.localEulerAngles.z);
 	}
 
 	void OnTriggerEnter(Collider other) {
