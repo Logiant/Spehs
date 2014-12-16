@@ -6,7 +6,7 @@ public class DoorScript : MonoBehaviour {
 	private Animator anim;
 	private AudioSource sound;
 
-	public bool proximity;
+	public bool locked;
 	private int proximityCount;
 //	public bool locked;
 //	public bool malfunction;
@@ -18,17 +18,17 @@ public class DoorScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (proximity && other.CompareTag("Player"))
+		if (other.CompareTag("Player"))
 			proximityCount ++;
 	}
 
 	void OnTriggerExit(Collider other) {
-		if (proximity && other.CompareTag("Player"))
+		if (other.CompareTag("Player"))
 			proximityCount --;
 	}
 
 	void Update() {
-		if (proximity) {
+		if (!locked) {
 			anim.SetBool ("Open", proximityCount > 0);
 			if (anim.IsInTransition(0) && !sound.isPlaying)
 				sound.Play();
@@ -36,7 +36,7 @@ public class DoorScript : MonoBehaviour {
 	}
 
 	public void Toggle() {
-		if (!anim.IsInTransition(0) && !proximity) {
+		if (!anim.IsInTransition(0) && !locked) {
 			anim.SetBool ("Open", !anim.GetBool ("Open"));
 			sound.Play ();
 		}

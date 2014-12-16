@@ -5,7 +5,6 @@ public class GameState : MonoBehaviour {
 
 	public GameObject winScreen;
 	public GameObject loseScreen;
-	public GameObject console;
 
 	public PlayerScript player;
 
@@ -13,30 +12,45 @@ public class GameState : MonoBehaviour {
 	bool win;
 	bool inConsole;
 
+	ConsoleHandler consoleHandler;
 
 	// Use this for initialization
 	void Start () {
-//		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerScript> ();;
+		consoleHandler = GetComponentInChildren<ConsoleHandler> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		winScreen.SetActive (win);
 		loseScreen.SetActive (lose);
-		console.SetActive (console);
+		consoleHandler.Show (inConsole);
 		CheckWin ();
+		player.UIup = false;
+		if (win || lose || inConsole) {
+			player.UIup = true;
+		}
 	}
 
+	public void EnterConsole(DoorScript door, SupressionSystemScript suppressor) {
+		inConsole = true;
+		consoleHandler.Show(true);
+		consoleHandler.SetComponents (door, suppressor);
+	}
 
 	void CheckWin() {
 		GameObject[] fires = GameObject.FindGameObjectsWithTag ("Fire");
 		if (player.health <= 0) {
 			win = false;
 			lose = true;
-			player.UIup = true;
+			inConsole = false;
 		} else if (fires.Length == 0) {
 			win = true;
-			player.UIup = true;
+			inConsole = false;
 		}
+	}
+
+	public void closeConsole() {
+		inConsole = false;
+		consoleHandler.Show (false);
 	}
 }
