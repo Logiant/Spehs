@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		health = Mathf.Clamp (health, 0, maxHealth);
 		int percent = (int)(health / maxHealth * 100);
 		uiText.text = "HP: " + percent + "%";
@@ -45,12 +45,12 @@ public class PlayerScript : MonoBehaviour {
 	void Motion() {
 		//translation
 		Vector3 velocity = new Vector3(Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
-		velocity = velocity.normalized * speed + (Physics.gravity * Time.deltaTime);
+		velocity = velocity.normalized * speed + (Physics.gravity * Time.fixedDeltaTime);
 		//rotation
 		Vector3 look = new Vector3(0, Input.GetAxis ("Mouse X"), 0) * mouseSensitivity;
 		transform.Rotate (look);
 		cam.Rotate (Input.GetAxis ("Mouse Y") * mouseSensitivity);
 		//move CC
-		cc.Move(transform.rotation * velocity * Time.deltaTime);
+		cc.Move(transform.rotation * velocity * Time.fixedDeltaTime);
 	}
 }
