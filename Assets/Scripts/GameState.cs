@@ -33,8 +33,10 @@ public class GameState : MonoBehaviour {
 		if (player.health <= 0) {
 			win = false;
 			lose = true;
+			player.UIup = true;
 		} else if (fires.Length == 0) {
 			win = true;
+			player.UIup = true;
 		}
 	}
 }
