@@ -32,7 +32,9 @@ public class PlayerScript : MonoBehaviour {
 		uiText.text = "HP: " + percent + "%";
 		if (health > 0 && !UIup) {
 			Motion();
+			extinguisher.enabled = true;
 		} else {
+			extinguisher.firing = false;
 			extinguisher.enabled = false;
 		}
 
