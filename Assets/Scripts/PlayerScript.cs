@@ -44,6 +44,10 @@ public class PlayerScript : MonoBehaviour {
 		health -= amt;
 	}
 
+	public float refill(float amt) {
+		return extinguisher.refill (amt);
+	}
+
 	void Motion() {
 		//translation
 		Vector3 velocity = new Vector3(Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));

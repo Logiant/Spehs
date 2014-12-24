@@ -47,6 +47,12 @@ public class ExtinguisherScript : MonoBehaviour {
 		needle.localRotation = Quaternion.Euler (needle.localEulerAngles.x, newAngle, needle.localEulerAngles.z);
 	}
 
+	public float refill(float amt) {
+		float used = maxPropellant - propellantLeft;
+		propellantLeft = Mathf.Min (maxPropellant, propellantLeft + amt);
+		return used;
+	}
+
 	void OnTriggerEnter(Collider other) {
 		if (firing && other.CompareTag ("Fire") ){
 			Destroy(other.gameObject);

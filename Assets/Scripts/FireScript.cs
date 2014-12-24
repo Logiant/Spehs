@@ -55,6 +55,7 @@ public class FireScript : MonoBehaviour {
 	//check if there is already a fire within a 1m radius
 	bool fireClearance(Vector3 point) {
 		bool clear = true;
+		bool floor = false;
 		Collider[] objs = Physics.OverlapSphere (point, 1);
 		for (int i = 0; i < objs.Length; i++) {
 			if (objs[i].CompareTag ("Fire")) {
