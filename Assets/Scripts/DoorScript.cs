@@ -8,8 +8,7 @@ public class DoorScript : MonoBehaviour {
 
 	public bool locked;
 	private int proximityCount;
-//	public bool locked;
-//	public bool malfunction;
+	public bool malfunction;
 //	public bool broken;
 
 	void Awake() {
@@ -28,17 +27,20 @@ public class DoorScript : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!locked) {
+		if (!locked && !malfunction) {
 			anim.SetBool ("Open", proximityCount > 0);
 			if (anim.IsInTransition(0) && !sound.isPlaying)
 				sound.Play();
-		}
-	}
-
-	public void Toggle() {
-		if (!anim.IsInTransition(0) && !locked) {
+		} else if (malfunction && !anim.IsInTransition(0)) {
 			anim.SetBool ("Open", !anim.GetBool ("Open"));
 			sound.Play ();
 		}
 	}
+
+	//public void Toggle() {
+	//	if (!anim.IsInTransition(0) && !locked) {
+	//		anim.SetBool ("Open", !anim.GetBool ("Open"));
+	//		sound.Play ();
+	//	}
+	//}
 }
