@@ -12,11 +12,13 @@ public class GameState : MonoBehaviour {
 	bool win;
 	bool inConsole;
 
+	WeaponsBayScript weapons;
 	ConsoleHandler consoleHandler;
 
 	// Use this for initialization
 	void Start () {
 		consoleHandler = GetComponentInChildren<ConsoleHandler> ();
+		weapons = GameObject.FindGameObjectWithTag ("WeaponBay").GetComponent<WeaponsBayScript> ();
 	}
 	
 	// Update is called once per frame
@@ -38,14 +40,16 @@ public class GameState : MonoBehaviour {
 	}
 
 	void CheckWin() {
-		GameObject[] fires = GameObject.FindGameObjectsWithTag ("Fire");
-		if (player.health <= 0) {
-			win = false;
-			lose = true;
-			inConsole = false;
-		} else if (fires.Length == 0) {
-			win = true;
-			inConsole = false;
+		if (weapons.victoryTime <= 0) {
+			GameObject[] fires = GameObject.FindGameObjectsWithTag ("Fire");
+			if (player.health <= 0) {
+				win = false;
+				lose = true;
+				inConsole = false;
+			} else if (fires.Length == 0) {
+				win = true;
+				inConsole = false;
+			}
 		}
 	}
 
