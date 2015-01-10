@@ -14,7 +14,7 @@ public class EngineScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		health = new HealthScript (maxHealth, startHealth);
+		health.initialize(maxHealth, startHealth);
 	}
 	
 	// Update is called once per frame
