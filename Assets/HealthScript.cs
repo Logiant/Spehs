@@ -6,7 +6,7 @@ public class HealthScript : MonoBehaviour {
 	float maxHealth;
 	float health;
 
-	public HealthScript(float max, float current) {
+	public void initialize(float max, float current) {
 		maxHealth = max;
 		health = current;
 	}
