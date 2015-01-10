@@ -14,6 +14,7 @@ public class LifeSupportScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		health = GetComponent<HealthScript> ();
 		health.initialize(maxHealth, startingHealth);
 	}
 	

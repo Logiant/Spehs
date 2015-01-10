@@ -12,7 +12,8 @@ public class WeaponsBayScript : MonoBehaviour {
 	public bool malfunction;
 	public bool broken;
 
-	void Start() {
+	void Start () {
+		health = GetComponent<HealthScript> ();
 		health.initialize(maxHealth, startingHealth);
 	}
 	

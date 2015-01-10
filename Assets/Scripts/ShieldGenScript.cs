@@ -10,8 +10,8 @@ public class ShieldGenScript : MonoBehaviour {
 	HealthScript health;
 
 	public float healthRatio;
-	// Use this for initialization
 	void Start () {
+		health = GetComponent<HealthScript> ();
 		health.initialize(maxHealth, startHealth);
 	}
 	
