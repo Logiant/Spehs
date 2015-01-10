@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireSpawnScript : MonoBehaviour {
+public class FireMasterScript : MonoBehaviour {
 
 	public GameObject[] fireSpawns;
 	public float cooldownTime;
 	float shieldMod = 10;
 	float malEngineMod = 5;
 	float engineMod = 10;
-	
+	FireSpawnerScript spawner;
 	private float timer;
 	public ShieldGenScript shields;
 	public EngineScript engines;
@@ -30,8 +30,10 @@ public class FireSpawnScript : MonoBehaviour {
 		}
 		if (timer >= (cooldown)){
 			timer = 0;
-			//int index = Random.Range (0, fireSpawns.GetLength());
-			//fireSpawns[index].create fire
+			Debug.Log (fireSpawns.Length);
+			int index = Random.Range (0,fireSpawns.Length);
+			spawner = fireSpawns[index].GetComponent<FireSpawnerScript>();
+			spawner.spawnFire();
 		}
 	}
 }

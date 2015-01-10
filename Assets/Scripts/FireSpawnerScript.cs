@@ -4,7 +4,7 @@ using System.Collections;
 public class FireSpawnerScript : MonoBehaviour {
 	public GameObject groundFire;
 
-	void spawnFire(){
+	public void spawnFire(){
 		Instantiate (groundFire, transform.position, new Quaternion());
 	}
 }
