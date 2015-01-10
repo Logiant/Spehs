@@ -20,9 +20,9 @@ public class FireScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		if (other.CompareTag("Player")) {
-			PlayerScript ps = other.GetComponent<PlayerScript>();
-			ps.Damage(damage * Time.deltaTime);
+		HealthScript hp = other.GetComponent<HealthScript> ();
+		if (hp != null) {
+			hp.damage(damage * Time.deltaTime);
 		}
 
 	}

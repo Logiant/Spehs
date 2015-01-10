@@ -33,7 +33,7 @@ public class MedicalScript : MonoBehaviour {
 		if (healing) {
 			if (!particles.isPlaying)
 				particles.Play ();
-			player.Damage (-healRate * Time.deltaTime);
+			player.damage (-healRate * Time.deltaTime);
 		} else if (particles.isPlaying)
 			particles.Stop ();
 	}

@@ -2,10 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(HealthScript))]
 public class PlayerScript : MonoBehaviour {
 
-	float maxHealth;
-	public float health = 100;
+	HealthScript health;
+	public float maxHealth = 100;
 	public float speed = 6; // m/s
 	public Text uiText;
 	public float mouseSensitivity = 10;
@@ -19,7 +20,8 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		maxHealth = health;
+		health = GetComponent<HealthScript>();
+		health.initialize (maxHealth, maxHealth);
 		cc = GetComponent<CharacterController> ();
 		cam = Camera.main.GetComponent<CamScript> ();
 		extinguisher = GetComponentInChildren<ExtinguisherScript> ();
@@ -27,10 +29,9 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		health = Mathf.Clamp (health, 0, maxHealth);
-		int percent = (int)(health / maxHealth * 100);
+		int percent = (int)(health.getHealth () / maxHealth * 100);
 		uiText.text = "HP: " + percent + "%";
-		if (health > 0 && !UIup) {
+		if (health.getHealth () > 0 && !UIup) {
 			Motion();
 			extinguisher.enabled = true;
 		} else {
@@ -39,9 +40,13 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 	}
-	
-	public void Damage(float amt) {
-		health -= amt;
+
+	public float getHealth() {
+		return health.getHealth ();
+	}
+
+	public void damage(float amt) {
+		health.damage (amt);
 	}
 
 	public float refill(float amt) {
