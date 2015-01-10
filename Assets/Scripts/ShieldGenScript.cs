@@ -12,7 +12,7 @@ public class ShieldGenScript : MonoBehaviour {
 	public float healthRatio;
 	// Use this for initialization
 	void Start () {
-		0health.initialize(maxHealth, startHealth);
+		health.initialize(maxHealth, startHealth);
 	}
 	
 	// Update is called once per frame
