@@ -4,7 +4,7 @@ using System.Collections;
 public class FireScript : MonoBehaviour {
 
 	public float health = 10;
-	public float damage = 150; //dps
+	public float damage = 50; //dps
 
 	public GameObject floorFire;
 	public GameObject wallFire;
