@@ -3,18 +3,21 @@ using System.Collections;
 
 public class ShieldGenScript : MonoBehaviour {
 
-	int health;
-	int currentHealth;
-	bool shieldsUp;
+	float maxHealth = 100;
+	float startHealth = 100;
+	float currentHealth;
+
+	HealthScript health;
+
+	public float healthRatio;
 	// Use this for initialization
 	void Start () {
-		shieldsUp = true;
-		health = 15;
-		currentHealth = health;
+		health = new HealthScript (maxHealth, startHealth);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		shieldsUp = (health != 0);
+		currentHealth = health.getHealth ();
+		healthRatio = (currentHealth/maxHealth);
 	}
 }
