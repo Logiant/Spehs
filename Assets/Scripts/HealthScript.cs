@@ -23,4 +23,8 @@ public class HealthScript : MonoBehaviour {
 	public float getHealth() {
 		return health;
 	}
+
+	public float getHealthPercent() {
+		return health / maxHealth;
+	}
 }
